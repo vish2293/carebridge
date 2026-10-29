@@ -32,8 +32,8 @@ visitRoute.delete("/multiple-delete", auth, auditMiddleware, encryptDecryptMiddl
 // MULTIPLE DELETE
 visitRoute.get("/visit-type", auth, auditMiddleware, encryptDecryptMiddleware, visitController.getAllVisitByType)
 
-visitRoute.put('/update-todo', auditMiddleware, encryptDecryptMiddleware, visitController.assignTodos)
+visitRoute.put('/update-todo', auth, auditMiddleware, encryptDecryptMiddleware, visitController.assignTodos)
 
-visitRoute.put('/add-id-of-category', auditMiddleware, encryptDecryptMiddleware, visitController.addIdOfCategory)
+visitRoute.put('/add-id-of-category', auth, auditMiddleware, encryptDecryptMiddleware, visitController.addIdOfCategory)
 
 module.exports = { visitRoute }

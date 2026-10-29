@@ -10,7 +10,7 @@ needOrCategoryRoute.post('/create', auth, auditMiddleware, encryptDecryptMiddlew
 
 needOrCategoryRoute.get('/get', auth, auditMiddleware, encryptDecryptMiddleware, listNeedOrCategory)
 
-needOrCategoryRoute.put('/remove', samenameRemove)
+needOrCategoryRoute.put('/remove', auth, samenameRemove)
 
 module.exports = {
     needOrCategoryRoute

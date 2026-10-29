@@ -1,18 +1,17 @@
-const aws = require("aws-sdk");
-const express = require("express");
 const multer = require("multer");
-const multerS3 = require("multer-s3-transform");
-const { s3BucketConfig } = require("../../config"); // Your configuration file
-const { getPath } = require("./uploadPaths"); // Assuming you have a function to get the path
+const multerS3 = require("multer-s3");
+const { S3Client, DeleteObjectCommand } = require("@aws-sdk/client-s3");
+const { s3BucketConfig } = require("../../config");
+const { getPath } = require("./uploadPaths");
 const path = require('path')
 
-aws.config.update({
-  secretAccessKey: s3BucketConfig.secretAccessKey,
-  accessKeyId: s3BucketConfig.accessKeyId,
-});
-
-const s3 = new aws.S3({
+const s3 = new S3Client({
   endpoint: s3BucketConfig.baseUrl,
+  region: s3BucketConfig.region,
+  credentials: {
+    accessKeyId: s3BucketConfig.accessKeyId,
+    secretAccessKey: s3BucketConfig.secretAccessKey,
+  },
 });
 
 const storage = multerS3({
@@ -21,7 +20,7 @@ const storage = multerS3({
   key: function (req, file, cb) {
     cb(
       null,
-      `${getPath(req.originalUrl)}${Date.now()}-original-${file.originalname}`
+      `${getPath(req.originalUrl)}${Date.now()}-original-${file.originalname.replace(/[^\w.-]/g, '_')}`
     );
   },
   acl: "public-read",
@@ -29,8 +28,9 @@ const storage = multerS3({
 
 const imageUpload = multer({
   storage,
+  limits: { fileSize: 50 * 1024 * 1024, files: 10 },
   fileFilter: (req, file, cb) => {
-    const validFileTypes = /jpg|jpeg|png|mp4|mov|avi|avif|pdf/
+    const validFileTypes = /^\.(jpg|jpeg|png|mp4|mov|avi|avif|pdf)$/
 
     const extname = validFileTypes.test(path.extname(file.originalname).toLowerCase())
 
@@ -49,13 +49,12 @@ const imageUpload = multer({
 const deleteFile = (files) => {
   if (files) {
     (files.constructor === Array ? [...files] : [files]).forEach((file) => {
-      s3.deleteObject(
-        {
+      s3.send(
+        new DeleteObjectCommand({
           Bucket: s3BucketConfig.bucket,
           Key: file.constructor === String ? file : file.key,
-        },
-        function (err, data) { }
-      );
+        })
+      ).catch(() => { });
     });
   }
 };

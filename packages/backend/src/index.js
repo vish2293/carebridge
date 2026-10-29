@@ -9,14 +9,24 @@ const { handleDynamicReminders } = require('./services/croneServices/postPreSche
 const { user } = require('./models')
 const auditMiddleware = require('./middlewares/auditMiddleware')
 const morgan = require('morgan');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const requestIp = require('request-ip');
 // const { scheduleEmails } = require('./services/croneServices/postPreScheduler')
 // const { requestController } = require('./controllers')
 
 const app = express()
 connectDb()
-app.use(cors())
-app.use(express.json());
+app.set('trust proxy', 1) // behind Vercel's proxy, so rate limits see the real client IP
+app.use(helmet())
+// CORS_ORIGINS: comma separated list of allowed frontend/admin URLs (empty = allow all, local dev only)
+const allowedOrigins = (process.env.CORS_ORIGINS || '').split(',').map(o => o.trim()).filter(Boolean)
+app.use(cors(allowedOrigins.length ? { origin: allowedOrigins } : undefined))
+app.use(express.json({ limit: '1mb' }));
+
+// slow down brute-force on credential and one-time-code endpoints
+const authLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 30, standardHeaders: true, legacyHeaders: false })
+app.use(['/user/login', '/user/otp', '/user/resend-otp', '/user/forget-pwd', '/user/reset-pwd', '/admin-user/login'], authLimiter)
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw())

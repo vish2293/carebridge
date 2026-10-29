@@ -31,10 +31,10 @@ requestRoute.delete("/deleteRequest", auth, auditMiddleware, encryptDecryptMiddl
 // MULTIPLE DELETE REQUEST 
 requestRoute.delete('/multiple-delete', auth, auditMiddleware, encryptDecryptMiddleware, requestController.multipleDeleteRequest)
 
-requestRoute.put("/assign-chw-to-req", auditMiddleware, encryptDecryptMiddleware, requestController.assignChwinRequest)
+requestRoute.put("/assign-chw-to-req", auth, auditMiddleware, encryptDecryptMiddleware, requestController.assignChwinRequest)
 
 requestRoute.put('/list-previous-request/:requestId', auth, auditMiddleware, encryptDecryptMiddleware, requestController.previoudRequestData)
 
-requestRoute.put('/remove-extra-resource', auditMiddleware, encryptDecryptMiddleware, requestController.removeDeletedResourceGiven)
+requestRoute.put('/remove-extra-resource', auth, auditMiddleware, encryptDecryptMiddleware, requestController.removeDeletedResourceGiven)
 
 module.exports = { requestRoute }

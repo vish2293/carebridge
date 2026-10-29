@@ -208,6 +208,16 @@ const userSchema = mongoose.Schema(
     },
     {
         timestamps: true,
+        toJSON: {
+            // never leak credentials or one-time tokens in API responses
+            transform: (_doc, ret) => {
+                delete ret.password
+                delete ret.otp
+                delete ret.token
+                delete ret.resetPasswordToken
+                return ret
+            },
+        },
     }
 );
 

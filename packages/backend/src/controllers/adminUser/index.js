@@ -299,11 +299,11 @@ const loginUser = async (req, res) => {
     const { email, password } = req.body;
 
 
-    if (!email && !userName) {
-      return res.json({ message: "Please enter email or userName" });
+    if (typeof email !== "string" || !email) {
+      return res.status(400).json({ message: "Please enter email" });
     }
 
-    if (!password) {
+    if (typeof password !== "string" || !password) {
       return res.json({ message: "Please enter password" });
     }
 
@@ -319,7 +319,7 @@ const loginUser = async (req, res) => {
       return InvalidError(res, 'email or password');
     }
 
-    const token = jwt.sign({ user: isUserExist }, process.env.JWT_SECRETE_KEY);
+    const token = jwt.sign({ userId: isUserExist._id, role: isUserExist.role }, process.env.JWT_SECRETE_KEY, { expiresIn: "7d" });
 
     return res.status(200).json({ status: true, message: "Login success", data: token });
 

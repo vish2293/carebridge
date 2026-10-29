@@ -2,6 +2,7 @@ const express = require('express')
 const { userController } = require('../../controllers')
 const { imageUpload } = require("../../services/file");
 const auth = require('../../middlewares/auth');
+const requireRole = require('../../middlewares/requireRole')
 const auditMiddleware = require('../../middlewares/auditMiddleware');
 const encryptDecryptMiddleware = require('../../middlewares/encryptDecryptMiddleware');
 const userRouter = express.Router()
@@ -9,12 +10,12 @@ const userRouter = express.Router()
 //FOR CREATE USER
 userRouter.post("/register", userController.createUser)
 //FOR CREATE CHW
-userRouter.post("/createChw", auth, auditMiddleware, encryptDecryptMiddleware, userController.createChwAndClient)
+userRouter.post("/createChw", auth, requireRole('Super_Admin', 'Program_Administrator'), auditMiddleware, encryptDecryptMiddleware, userController.createChwAndClient)
 
 userRouter.post("/createClient", auditMiddleware, encryptDecryptMiddleware, userController.createClient)
 
 //FOR VERIFY USER
-userRouter.put("/verify", encryptDecryptMiddleware, userController.verifyEmail)
+userRouter.put("/verify", auth, requireRole('Super_Admin'), encryptDecryptMiddleware, userController.verifyEmail)
 //FOR LOGIN USER
 userRouter.post("/login", encryptDecryptMiddleware, userController.loginUser)
 userRouter.post('/otp', encryptDecryptMiddleware, userController.verifyOTP)
@@ -49,7 +50,7 @@ userRouter.put("/updateUser", auth, auditMiddleware, imageUpload.single("profile
 //FOR DELETE USER
 userRouter.delete("/deleteUser", auth, auditMiddleware, encryptDecryptMiddleware, userController.deleteUser)
 //FOR DELETE MULTIPLE USER
-userRouter.delete("/delete-multiple", auth, auditMiddleware, encryptDecryptMiddleware, userController.deleteMultiUser)
+userRouter.delete("/delete-multiple", auth, requireRole('Super_Admin', 'Program_Administrator'), auditMiddleware, encryptDecryptMiddleware, userController.deleteMultiUser)
 
 //FOR active user
 userRouter.put("/get-user-by-active", auth, auditMiddleware, encryptDecryptMiddleware, userController.getUserByActive)

@@ -23,11 +23,11 @@ profileQuestionRoute.put("/deleteQuestion", auth, auditMiddleware, encryptDecryp
 
 profileQuestionRoute.get('/check', auditMiddleware, encryptDecryptMiddleware, profileQuestionController.checkCategory)
 
-profileQuestionRoute.put('/update-profile-question', auditMiddleware, encryptDecryptMiddleware, profileQuestionController.updateQuestionNumbers)
+profileQuestionRoute.put('/update-profile-question', auth, auditMiddleware, encryptDecryptMiddleware, profileQuestionController.updateQuestionNumbers)
 
-profileQuestionRoute.put('/add-question-number', auditMiddleware, encryptDecryptMiddleware, profileQuestionController.addQuestionNumber)
+profileQuestionRoute.put('/add-question-number', auth, auditMiddleware, encryptDecryptMiddleware, profileQuestionController.addQuestionNumber)
 
-profileQuestionRoute.put('/add-sequence-number', auditMiddleware, encryptDecryptMiddleware, profileQuestionController.addSequenceNumber)
+profileQuestionRoute.put('/add-sequence-number', auth, auditMiddleware, encryptDecryptMiddleware, profileQuestionController.addSequenceNumber)
 
 profileQuestionRoute.get('/list-demography', auditMiddleware, encryptDecryptMiddleware, profileQuestionController.getDemography)
 

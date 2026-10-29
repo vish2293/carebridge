@@ -496,7 +496,7 @@ const createUser = async (req, res) => {
       requests,
       objective,
       password: hashedPassword ? hashedPassword : "",
-      role,
+      role: "Client", // public endpoint: never trust a client-supplied role
       city,
       visit_type,
       permissions,
@@ -861,7 +861,7 @@ const createClient = async (req, res) => {
       email: email?.trim(),
       visit_type,
       objective: objectivesOfProfile,
-      role,
+      role: "Client", // public endpoint: never trust a client-supplied role
       assign_to,
       isChw_Assign: isChw_Assign ? true : false,
       password: hashedPassword ? hashedPassword : "",
@@ -2324,29 +2324,29 @@ const deleteMultiUser = async (req, res) => {
 const forgetPwd = async (req, res) => {
   try {
     const { email } = req.body
+    if (typeof email !== "string" || !email) {
+      return res.status(400).json({ status: false, message: "Please enter email" });
+    }
     const normalizedEmail = email.toLowerCase();
 
     const findUser = await user.findOne({ email: normalizedEmail });
-    const token = await jwt.sign(
-      { id: findUser?._id },
-      process.env.JWT_SECRETE_KEY,
-      { expiresIn: "24h" }
-    );
-    await user.findByIdAndUpdate(findUser?._id, {
-      resetPasswordToken: token,
-      is_reset_pwd: false,
-    });
-    if (findUser === null) {
-      return res
-        .status(404)
-        .json({ status: "fail", message: "User not found" });
-    } else {
-      forgetPasswordMail(findUser, token);
-      return res.status(200).json({
-        status: true,
-        message: "Forget password mail sent successfully!",
+    if (findUser) {
+      const token = await jwt.sign(
+        { id: findUser._id },
+        process.env.JWT_SECRETE_KEY,
+        { expiresIn: "24h" }
+      );
+      await user.findByIdAndUpdate(findUser._id, {
+        resetPasswordToken: token,
+        is_reset_pwd: false,
       });
+      forgetPasswordMail(findUser, token);
     }
+    // same response whether or not the account exists, so emails can't be enumerated
+    return res.status(200).json({
+      status: true,
+      message: "If an account exists for that email, a reset link has been sent.",
+    });
   } catch (error) {
     console.log("error", error);
     res.status(500).json({ status: false, message: "Internal server error" });
@@ -3127,7 +3127,9 @@ const setReassessmentDateScript = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { otp, email, role } = req.body;
-
+    if (typeof email !== "string" || typeof otp !== "string") {
+      return res.status(400).json({ message: "Invalid request." });
+    }
     const normalizedEmail = email.toLowerCase();
 
     let user;
