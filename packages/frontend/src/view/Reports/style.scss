@@ -1,0 +1,239 @@
+.advanced_filter_form {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #f0f0f0;
+  margin-bottom: 14px;
+  width: 100%;
+
+  .accept-reject {
+    justify-content: flex-end;
+  }
+
+  .ant-form {
+    display: flex;
+    gap: 10px;
+    position: relative;
+    width: 100%;
+    // flex-wrap: wrap;
+
+    .ant-form-item .ant-form-item-label > label {
+      font-weight: 600;
+    }
+
+    .ant-picker {
+      .ant-picker-input {
+        > input {
+          &::placeholder {
+            color: #7d797d;
+            font-size: 14px;
+            font-family: var(--body_font);
+          }
+        }
+      }
+    }
+  }
+}
+
+.status-sec {
+  .advanced_filter_form {
+    .ant-form-item {
+      min-width: 10%;
+      width: 100%;
+      max-width: 24%;
+
+      .ant-select.ant-select-single {
+        max-width: 100%;
+        width: 100%;
+
+        .ant-select-selection-placeholder {
+          color: #7d797d;
+        }
+      }
+
+      .ant-input-number {
+        max-width: 100%;
+        width: 100%;
+        color: #7d797d;
+
+        .ant-input-number-input {
+          &::placeholder {
+            color: #7d797d;
+            font-size: 14px;
+            font-family: var(--body_font);
+          }
+        }
+      }
+      input {
+        &.ant-input {
+          height: 32px;
+        }
+      }
+    }
+  }
+}
+
+.advance-close {
+  position: absolute;
+  right: 0;
+
+  button {
+    &.ant-btn-default {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+
+      &:not(:disabled):not(.ant-btn-disabled):hover {
+        background-color: transparent;
+        border: transparent;
+
+        svg {
+          path {
+            fill: black;
+          }
+        }
+      }
+    }
+  }
+}
+
+.filter-sec {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin: 10px 0;
+
+  button {
+    &.ant-btn {
+      &.ant-btn-default {
+        padding: 4px 12px;
+      }
+
+      &[disabled] {
+        &.ant-btn-primary.yellow-btn {
+          border-color: #d9d9d9;
+          color: rgba(0, 0, 0, 0.25);
+          background-color: rgba(0, 0, 0, 0.04);
+          box-shadow: none;
+        }
+      }
+    }
+  }
+
+  .filter-label {
+    line-height: 100%;
+    min-width: 15%;
+    width: 100%;
+
+    .ant-select.ant-select-single {
+      max-width: 100%;
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    label {
+      font-size: 14px;
+      font-weight: 600;
+      font-family: var(--body_font);
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .advanced_filter_form .ant-form {
+    gap: 10px;
+    // flex-wrap: wrap;
+  }
+
+  // .status-sec {
+  //     .advanced_filter_form {
+  //         .ant-form-item {
+  //             max-width: 24%;
+
+  //         }
+  //     }
+  // }
+}
+
+@media (max-width: 1024px) {
+  .report_container {
+    .status-sec {
+      align-items: flex-start;
+      flex-direction: column;
+
+      .status-sec-left {
+        width: 100%;
+      }
+
+      .status-sec-right {
+        width: 100%;
+      }
+
+      .advanced_filter_form {
+        .ant-form {
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+  .status-sec {
+    .advanced_filter_form {
+      .ant-form-item {
+        max-width: 30%;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  .filter-sec {
+    flex-wrap: wrap;
+
+    .filter-label {
+      max-width: 28%;
+    }
+  }
+
+  .status-sec {
+    .advanced_filter_form {
+      .ant-form-item {
+        max-width: 30%;
+      }
+
+      .ant-form {
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
+
+@media (max-width: 475px) {
+  .filter-sec {
+    .filter-label {
+      max-width: 100%;
+    }
+
+    div:nth-child(4) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .advanced_filter_form {
+    .ant-form {
+      flex-direction: column;
+
+      .ant-form-item {
+        margin-bottom: 5px;
+        max-width: 100%;
+
+        .ant-form-item-label > label {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    .accept-reject {
+      margin-top: 10px;
+    }
+  }
+}

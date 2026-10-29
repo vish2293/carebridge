@@ -1,0 +1,114 @@
+header {
+    padding: 20px 0;
+
+    .header_inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            width: 100%;
+            img {
+                max-width: 127px;
+                width: 100%;
+            }
+        }
+    }
+
+    .account_btn_wrap {
+        display: flex;
+        align-items: center;
+
+        p {
+            margin: 0;
+            padding-right: 30px;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 112.5%;
+        }
+    }
+}
+
+@media(max-width:1200px) {
+    header {
+        .header_inner {
+            .logo {
+                // width: 127px;
+
+                img {
+                    max-width: 100px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width:767px) {
+
+    header {
+        .account_btn_wrap {
+            align-items: flex-end;
+            flex-direction: column;
+            gap: 5px;
+
+            p {
+                padding-right: 0;
+            }
+
+
+        }
+
+        .header_inner {
+            .logo {
+                // width: 70px;
+
+                img {
+                    max-width: 70px;
+                    width: 100%;
+                }
+            }
+        }
+
+    }
+}
+
+@media(max-width:475px) {
+    header {
+        .account_btn_wrap {
+            p {
+
+                font-size: 14px;
+            }
+        }
+    }
+}
+.site_header {
+    padding: 16px 0;
+    background: #fff;
+    border-bottom: 1px solid #D3E2DF;
+    .site_logo {
+        font: 700 1.6rem "Bricolage Grotesque", sans-serif;
+        color: #0F3D3A;
+        letter-spacing: -0.02em;
+        span { color: #0F766E; }
+        &:hover { color: #0F3D3A; }
+    }
+    .site_nav {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        font-family: "Figtree", sans-serif;
+        a { color: #14201F; font-size: 16px; font-weight: 600; &:hover { color: #0F766E; } }
+    }
+    .site_cta {
+        font: 600 15px "Figtree", sans-serif;
+        background: #0F3D3A; color: #fff; border: 0; border-radius: 10px; padding: 11px 20px; cursor: pointer;
+        &:hover { background: #1A5A55; }
+    }
+    @media (max-width: 767px) {
+        .site_nav { gap: 14px; a { display: none; } }
+        .site_cta { padding: 10px 14px; font-size: 14px; }
+    }
+}

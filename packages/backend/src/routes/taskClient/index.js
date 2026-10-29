@@ -1,0 +1,22 @@
+const express = require('express')
+const { taskClientController } = require('../../controllers')
+const auth = require('../../middlewares/auth')
+const auditMiddleware = require('../../middlewares/auditMiddleware')
+const encryptDecryptMiddleware = require('../../middlewares/encryptDecryptMiddleware')
+const taskClientRouter = express.Router()
+
+taskClientRouter.post("/create-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.createTodo)
+taskClientRouter.post("/assign-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.assignTask)
+taskClientRouter.get("/user-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getSingleUserTodo)
+taskClientRouter.get("/single-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.singleTask)
+taskClientRouter.post("/all-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getAllTask)
+taskClientRouter.post("/edit-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.editTask)
+taskClientRouter.put("/edit-single-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.editSingleTask)
+taskClientRouter.post("/delete-single-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.deleteTask)
+taskClientRouter.put("/request-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getRequestTask)
+taskClientRouter.put("/request-task-by-chw", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getRequestTaskByCHW)
+taskClientRouter.put("/status-task", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.statusTask)
+taskClientRouter.post("/search", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getRequestTaskSearch)
+taskClientRouter.post("/task-followup-date", auth, auditMiddleware, encryptDecryptMiddleware, taskClientController.getTaskAndFollowupData)
+
+module.exports = { taskClientRouter }

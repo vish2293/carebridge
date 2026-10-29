@@ -1,0 +1,253 @@
+.onboarding {
+	padding-top: 130px;
+	background-color: white;
+	min-height: 100vh;
+	padding-bottom: 20px;
+}
+
+.onboarding-stps {
+	max-width: 781px;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.onboarding-stps .ant-steps {
+	margin-bottom: 30px;
+	padding-left: 0;
+}
+
+.onboarding-form {
+	border: 1px solid #D4D2D4;
+	margin-bottom: 20px;
+	border-radius: 20px;
+	overflow: hidden;
+	.ant-picker{
+		height: 39px;
+		.ant-picker-input > input{
+			font-size: 16px;
+			&::placeholder{
+				color: #c9c9c9;
+				
+			}
+			
+		}
+		
+	}
+	.two-fill-row {
+		.ant-form-item{
+			max-width: 48%;
+			.ant-form-item-label {
+				label{
+					&.ant-form-item-required{
+						&::after{
+							margin-left: 5px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}
+
+.onboard-head {
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 28px;
+
+	font-family: var(--body_font);
+	border-bottom: 1px solid #D4D2D4;
+	padding: 20px 30px 20px;
+}
+
+.onboarding-form .ant-btn{
+	&.ant-btn-primary{
+		&.yellow-btn {
+			padding: 6px 14px;
+			border: 1px solid #0F766E;
+            background: #0F766E;
+            padding: 4px 15px;
+            color: var(--rich-black);
+			&:not(:disabled):not(.ant-btn-disabled){
+				&:hover{
+					background-color: var(--rich-black);
+					border: 1px solid var(--rich-black);
+					color: #fff;
+				}
+			}
+		}
+	}
+	
+}
+
+.btn-sec {
+	gap: 10px;
+	position: sticky;
+	bottom: 0;
+	padding: 0 20px 20px;
+	right: 0;
+	// background-color: white;
+	width: 100%;
+	max-width: 781px;
+	margin: 0 auto;
+	left: 0;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-top: 10px;
+	background-color: white;
+	border-top: 1px solid #D4D2D4;
+
+
+}
+
+.onboarding-form .ant-form-item {
+	.ant-form-item-label {
+		label {
+			color: #000;
+			font-family: var(--body_font);
+			font-weight: 600;
+			margin-bottom: 5px;
+			line-height: 24px;
+
+			&.ant-form-item-required {
+				color: #000;
+				font-family: var(--body_font);
+			font-weight: 600;
+			margin-bottom: 5px;
+			line-height: 24px;
+			margin-right: 7px;
+			}
+
+		}
+	}
+}
+
+.onboarding-form .ant-form.ant-form-vertical {
+
+	max-height: 80vh;
+	overflow: auto;
+	scrollbar-width: thin;
+
+	padding: 40px 30px 30px;
+
+}
+
+.onboarding-form .ant-radio-group {
+
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	gap: 15px;
+
+}
+
+.onboarding-form .ant-radio-wrapper {
+	font-weight: 400;
+	font-size: 14px;
+	font-family: var(--body_font);
+	color: #000;
+}
+
+.onboarding-form .dashboard-heading {
+	margin-bottom: 0;
+}
+
+.onboarding-form .heading {
+	line-height: 32px;
+}
+
+.onboarding-form .sucess-msg .yellow-btn {
+	margin: 40px auto 20px;
+}
+
+.sucess-msg {
+	max-width: 336px;
+	margin: 0 auto;
+	text-align: center;
+	padding: 40px 0;
+}
+
+.submitted-head {
+	font-size: 28px;
+	line-height: 46px;
+	font-weight: 600;
+	font-family: var(--body_font);
+}
+
+.submitted-des {
+	font-size: 16px;
+	line-height: 24px;
+	color: #595959;
+	font-family: var(--body_font);
+	font-weight: 400;
+}
+
+.ant-steps .ant-steps-item-title {
+	font-size: 14px;
+	font-weight: 400;
+	color: #A9A5A9;
+	// font-family: "Inter";
+
+}
+
+.ant-steps-item.ant-steps-item-wait .ant-steps-item-title {
+	color: #A9A5A9;
+}
+
+// .ant-steps-item.ant-steps-item-finish .ant-steps-item-title{
+// 	color: #1C64F2;
+// }
+.ant-steps .ant-steps-item-finish>.ant-steps-item-container>.ant-steps-item-content>.ant-steps-item-title {
+	color: #1C64F2;
+}
+
+@media (max-width:1200px) {
+	.onboarding-form .ant-btn.ant-btn-primary.yellow-btn {
+		padding: 3px 14px;
+	}
+}
+
+@media (max-width:767px) {
+	.onboarding-stps {
+		padding: 0 20px;
+	}
+	.onboarding-form{
+		.ant-picker{
+			height: 32px
+		}
+		.ant-form-item {
+			.ant-form-item-label {
+				> label{
+					font-size: 13px;
+				}
+			}
+			.ant-form-item-label {
+				label{
+					&.ant-form-item-required{
+						font-size: 13px;
+					}
+				}
+			}
+		}
+	}
+	
+}
+
+@media (max-width:475px) {
+
+	.onboarding-stps .ant-steps {
+		margin-bottom: 10px;
+
+	}
+
+	.onboarding-form {
+		.two-fill-row {
+			.ant-form-item {
+				max-width: 100%;
+			}
+		}
+		
+	}
+	
+}

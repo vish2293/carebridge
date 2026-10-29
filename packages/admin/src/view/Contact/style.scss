@@ -1,0 +1,126 @@
+.contact {
+    // margin-top: 20px;
+
+    .login-email {
+        margin-bottom: 20px;
+    }
+
+    .ant-form-item:nth-child(2) {
+        margin-bottom: 20px;
+    }
+
+    textarea {
+        &.ant-input {
+            min-height: 135px;
+        }
+    }
+
+    .login-right {
+        align-items: flex-start;
+        max-width: 100%;
+        padding: 0 35px;
+
+    }
+
+    .ant-btn-primary {
+        padding: 11px 50px;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height:  114.286%;
+        margin-left: auto;
+        background-color: #1E293B;
+        /* 114.286% */
+        &:not(:disabled):not(.ant-btn-disabled):hover{
+            background-color: transparent;
+            border: 1px solid #1E293B;
+            color: #1E293B;
+           
+        }
+    }
+   
+}
+
+.contact-li {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+    gap: 10px;
+    cursor: pointer;
+    &:hover{
+        color: var(--yellow);
+        svg{
+            path{
+                fill: var(--yellow);
+            }
+        }
+    }
+}
+.li-text {
+	color: #FFF;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 28px;
+    word-break: break-all;
+    
+        &:hover{
+            color: var(--yellow);
+        }
+    
+}
+@media(max-width:1024px){
+	.li-text {
+		font-size: 14px;
+		word-break: break-word;
+	}
+	.contact-li {
+		align-items: flex-start;
+		flex-wrap: nowrap;
+	}
+}
+@media(max-width:767px){
+    .li-text {
+        font-size: 16px
+    }
+}
+@media(max-width:475px){
+    .contact-li {
+      
+        align-items: flex-start;
+        flex-wrap: nowrap;
+      
+    }
+    .li-text {
+        font-size: 13px;
+        line-height: normal;
+        word-break: break-word;
+    }
+   
+    .li-icon{
+        display: flex;
+        svg{
+            width: 15px;
+        }
+    }
+    .main-sec-left{
+        .bg-img {
+            .bg-content {
+                ul {
+                    margin-top: 10px;
+                }
+            }
+            
+        }
+    }
+    .contact {
+        .ant-btn-primary {
+            padding: 7px 35px;
+            font-size: 13px;
+          
+        }        
+    }
+}
+

@@ -1,0 +1,85 @@
+.merge-details-container {
+    gap: 16px;
+    padding: 25px;
+}
+
+.user-card {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 25px 0 25px 20px;
+    position: relative;
+
+    .profile {
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+    }
+}
+
+.user-card h3 {
+    margin-top: 0;
+    padding: 5px;
+    font-size: 16px;
+    font-size: 200 !important;
+}
+
+.grid-container {
+    display: grid;
+    align-items: start;
+}
+
+.profile {
+    display: flex;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 108px;
+}
+
+.profile-image {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 5px;
+}
+
+.profile-info {
+    text-align: center;
+}
+
+.contact-info-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+}
+.user-card{
+    &.chw_detail_info {
+        margin-bottom: 20px;
+    }
+    .chw_personal_detail {
+        justify-content: flex-start;
+        align-items: center;
+        gap: 10px;
+        
+    }
+    .textClass {
+        display: flex;
+    }
+     .chw_personal_detail > div {
+        max-width: 31.5%;
+        width: 100%;
+    }
+}
+
+@media (max-width:475px) {
+    .user-card {
+        .chw_personal_detail > div {
+            max-width: 100%;
+            margin-bottom: 0;
+            
+        }
+    }
+}
+

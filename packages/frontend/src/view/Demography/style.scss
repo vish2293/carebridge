@@ -1,0 +1,78 @@
+.dnd {
+    // padding-bottom: 60px;
+    // padding-right: 20px;
+
+    padding: 60px 20px;
+    padding-top: 20px;
+    
+
+    .dnd-class {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid #E9E9E9;
+        margin-bottom: 10px;
+        border-radius: 2px;
+        padding: 5px 10px;
+
+        div {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+
+            &.accept-reject {
+                width: fit-content;
+                gap: 20px;
+            }
+        }
+    }
+}
+
+
+.dnd_btn {
+    position: sticky;
+    bottom: 0;
+    right: 0;
+    background-color: white;
+    // border-top: 1px solid #E9E9E9;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 20px;
+}
+
+.dnd_btn button.ant-btn-primary.yellow-btn:disabled {
+    border-radius: 4px;
+    border: 1px solid #E9E9E9;
+    background: #E9E9E9;
+    color: #938F93;
+}
+
+.dnd div:hover {
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+.demograpy-sec {
+    // max-width: 691px;
+    width: 100%;
+    background-color: white;
+    padding: 0 0 10px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+
+    .dashboard-heading {
+
+        padding-top: 15px;
+    }
+}
+.demograpy-sec .rcs-outer-container .rcs-inner-handle {
+	background-color: #7D797D;
+}
+@media (max-width:767px) {
+    .dnd {
+        padding-top: 20px;
+    }
+}

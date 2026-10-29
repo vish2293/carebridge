@@ -1,0 +1,16 @@
+.page-not-found{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.inside-page-not-found h1 ,h4 ,p   {
+    text-align: center;
+}
+.inside-page-not-found button{
+    margin: auto;
+    display: flex;
+}

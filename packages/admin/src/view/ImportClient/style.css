@@ -1,0 +1,148 @@
+.ant-modal-body {
+    .confirm-modal-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        .icon {
+            max-width: 45px;
+            max-height: 55px;
+            display: block;
+            line-height: 0;
+            margin-bottom: 10px;
+
+            &.animate {
+                animation: swal2-animate-error-icon 0.5s;
+                animation-delay: 0.1s;
+            }
+        }
+
+        h4 {
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 150%;
+            text-align: center;
+            color: var(--black_dark);
+            margin-bottom: 5px;
+
+            /* @media (max-width: $NormalScreen) {
+                font-size: 22px;
+            }
+
+            @media (max-width: $Tablet) {
+                font-size: 18px;
+            }
+
+            @media (max-width: $Mobile) {
+                font-size: 16px;
+            } */
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 150%;
+            text-align: center;
+            letter-spacing: 0.02em;
+            color: var(--black_dark);
+
+            /* @media (max-width: $NormalScreen) {
+                font-size: 16px;
+            }
+
+            @media (max-width: $Tablet) {
+                font-size: 13px;
+            } */
+        }
+    }
+}
+
+.importCSV-modal {
+    width: 650px !important;
+/* 
+    @media (max-width: $Tablet) {
+        max-width: 460px !important;
+        width: 90% !important;
+    }
+
+    @media (max-width: $Mobile) {
+        max-width: 400px !important;
+    } */
+
+    .ant-modal-footer {
+        justify-content: center;
+        button {
+            min-width: 140px;
+
+            /* @media (max-width: $Mobile) {
+                min-width: 80px;
+            } */
+        }
+    }
+}
+
+.ant-modal-body {
+    .confirm-modal-content.importe-data-summary {
+        padding: 30px;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        /* @media (max-width: $Mobile) {
+            padding: 15px;
+        } */
+
+        >.icon.animate {
+            margin: 0 auto 15px auto;
+        }
+
+        h4 {
+            color: var(--black_dark);
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: normal;
+            margin-bottom: 15px;
+            width: 100%;
+
+            /* @media (max-width: $Tablet) {
+                font-size: 18px;
+            }
+
+            @media (max-width: $Mobile) {
+                font-size: 16px;
+            } */
+        }
+
+        .note {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            .icon-img {
+                width: 24px;
+                height: 24px;
+                margin-right: 8px;
+                line-height: 0;
+
+                /* @media (max-width: $Mobile) {
+                    width: 18px;
+                    height: 18px;
+                } */
+            }
+
+            p {
+                font-style: normal;
+                font-weight: 400;
+                text-align: left;
+                margin-bottom: 0px;
+            }
+        }
+    }
+}
