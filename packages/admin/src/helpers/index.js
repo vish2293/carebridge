@@ -99,7 +99,7 @@ export const getProfileImage = (user) => {
   const S3_BASE_URL = import.meta.env.VITE_APP_S3_BASE_URL;
 
   if (user?.profileImage) {
-    return S3_BASE_URL + user.profileImage;
+    return user.profileImage.startsWith('http') ? user.profileImage : S3_BASE_URL + user.profileImage; // uploads are stored as full URLs
   } else {
     const initials =
       (user?.firstName?.charAt(0) || "") + (user?.lastName?.charAt(0) || "");

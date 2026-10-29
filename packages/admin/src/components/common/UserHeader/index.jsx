@@ -27,7 +27,7 @@ const UserHeader = () => {
     const S3_BASE_URL = import.meta.env.VITE_APP_S3_BASE_URL;
 
     if (loggedInUser?.profileImage) {
-      return S3_BASE_URL + loggedInUser.profileImage;
+      return loggedInUser.profileImage.startsWith('http') ? loggedInUser.profileImage : S3_BASE_URL + loggedInUser.profileImage; // uploads are stored as full URLs
     } else {
       const initials =
         (loggedInUser?.firstName?.charAt(0) || "") +
