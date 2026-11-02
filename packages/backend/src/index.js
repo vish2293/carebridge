@@ -1,11 +1,8 @@
 const express = require('express')
 const mainRouter = require('./routes')
 const cors = require('cors')
-const cron = require('node-cron')
 const dotenv = require('dotenv').config({ path: require('path').resolve(__dirname, '../../../.env') })
 const { connectDb } = require('./db')
-const { sendReminder } = require('./services/croneServices')
-const { handleDynamicReminders } = require('./services/croneServices/postPreScheduler')
 const { user } = require('./models')
 const auditMiddleware = require('./middlewares/auditMiddleware')
 const morgan = require('morgan');
@@ -31,9 +28,6 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw())
 app.use('/', mainRouter)
-// sendReminder()
-// scheduleEmails(requestController.getAllRequests)
-handleDynamicReminders()
 
 
 // Vercel runs the exported app as a serverless function; only listen locally

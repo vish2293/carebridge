@@ -32,11 +32,13 @@ const { pathwayRouter } = require('./pathways')
 const auditMiddleware = require('../middlewares/auditMiddleware')
 const { auditLogRouter } = require('./auditLogs')
 const encryptDecryptMiddleware = require('../middlewares/encryptDecryptMiddleware')
+const { cronRouter } = require('./cron')
 
 const mainRouter = express.Router()
 
 // mainRouter.use(encryptDecryptMiddleware);
 
+mainRouter.use("/cron", cronRouter)
 mainRouter.use("/user", userRouter)
 
 mainRouter.use("/request", requestRoute)

@@ -1,4 +1,3 @@
-const cron = require('node-cron');
 const { user, todos, taskClient } = require('../../models');
 const notificationModel = require('../../models/notification/notification.model');
 const reminderFlagModel = require('../../models/todoReminder/todoReminder.model');
@@ -44,9 +43,9 @@ const handleDynamicReminders = async () => {
     for (const todo of todosData) {
       const dueDate = new Date(todo.dueDate);
       if (dueDate > new Date()) {
-        notificationList.map(async (data) => {
+        await Promise.all(notificationList.map(async (data) => {
           if (data.reminders && data.reminders.length > 0) {
-            data.reminders.map(async (reminders) => {
+            await Promise.all(data.reminders.map(async (reminders) => {
               const { time, unit, direction, id } = reminders;
 
               let timeMultiplier;
@@ -100,24 +99,16 @@ const handleDynamicReminders = async () => {
                 }
               }
               return { date: cronDate, reminderId: id };
-            })
+            }))
           }
 
-          // Check if reminder has been sent
-
-
-        });
+        }));
       }
     }
   } catch (error) {
     console.error('Error handling dynamic reminders:', error);
   }
 };
-
-// Schedule the cron job
-cron.schedule('*/1 * * * *', async () => {
-  await handleDynamicReminders();
-});
 
 module.exports = {
   handleDynamicReminders,
