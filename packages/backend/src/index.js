@@ -9,7 +9,6 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const requestIp = require('request-ip');
-// const { scheduleEmails } = require('./services/croneServices/postPreScheduler')
 // const { requestController } = require('./controllers')
 
 const app = express()
