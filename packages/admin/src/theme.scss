@@ -33,26 +33,41 @@ h1, h2, h3, h4, .table-heading, .view-header h2 {
 a:hover { color: var(--teal); }
 ::selection { background: rgba(15, 118, 110, 0.18); }
 
-// ---- sidebar
+// ---- sidebar (selectors match the legacy specificity in Dashboard/style.scss so these win)
 .app_wrapper .side-bar {
   background: var(--spruce);
   scrollbar-color: rgba(255, 255, 255, 0.25) var(--spruce);
-  .ant-menu, .ant-menu-dark { background: transparent; }
-  .ant-menu-item, .ant-menu-submenu-title {
+  .sidebar_wrapper .ant-menu-dark,
+  .sidebar_wrapper .ant-menu-dark .ant-menu-sub,
+  .sidebar_wrapper .ant-menu-dark.ant-menu-inline .ant-menu-sub {
+    background: transparent;
+    scrollbar-color: rgba(255, 255, 255, 0.25) transparent;
+  }
+  .sidebar_wrapper .ant-menu-dark::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.25); outline: 0; }
+  .sidebar_wrapper .ant-menu-dark .ant-menu-item,
+  .sidebar_wrapper .ant-menu-dark .ant-menu-submenu-title {
     border-radius: var(--r-control);
-    margin: 2px 10px;
-    width: calc(100% - 20px);
     color: #b9d3cf;
     font-weight: 500;
     transition: background 0.2s, color 0.2s;
+    svg path { fill: #b9d3cf; transition: fill 0.2s; }
   }
-  .ant-menu-item:hover, .ant-menu-submenu-title:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
-  .ant-menu-item-selected {
-    background: rgba(255, 255, 255, 0.12) !important;
-    color: #fff !important;
+  .sidebar_wrapper .ant-menu-dark .ant-menu-item.ant-menu-item-active,
+  .sidebar_wrapper .ant-menu-dark .ant-menu-item:hover,
+  .sidebar_wrapper .ant-menu-dark .ant-menu-submenu-title:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    svg path { fill: #fff; }
+  }
+  .sidebar_wrapper .ant-menu-dark .ant-menu-item.ant-menu-item-selected {
+    background-color: rgba(255, 255, 255, 0.14);
+    color: #fff;
     box-shadow: inset 3px 0 0 #f2b632;
+    svg path { fill: #fff; }
   }
-  .ant-menu-sub { background: transparent !important; }
+  .sidebar_wrapper .help { background: rgba(255, 255, 255, 0.07); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--r-surface); }
+  .sidebar_wrapper .help .question_icon { background-color: rgba(255, 255, 255, 0.12); }
+  .sidebar_wrapper .help p { color: #b9d3cf; }
 }
 
 // ---- page chrome
@@ -66,16 +81,20 @@ a:hover { color: var(--teal); }
 .ant-card { border-color: var(--line); box-shadow: var(--shadow-surface); }
 .dashboard_table_wrapper .ant-table-wrapper { border-color: var(--line); box-shadow: var(--shadow-surface); overflow: hidden; }
 
+// ---- calendar bar
+.fc .fc-toolbar, .calendar_header, .calendar-header { background-color: var(--spruce); }
+
 // ---- tables
 .ant-table-wrapper {
-  .ant-table-thead > tr > th {
-    background: #eef3f1;
-    color: var(--ink-soft);
+  .ant-table-thead > tr > th, .ant-table-thead > tr > td, .ant-table-thead th.ant-table-column-sort,
+  .ant-table-thead > tr > th.ant-table-column-has-sorters:hover {
+    background: var(--spruce) !important;
+    color: #fff !important;
     font-size: 12.5px;
     font-weight: 600;
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    border-bottom: 1px solid var(--line);
+    border-bottom: 0;
   }
   .ant-table-tbody > tr > td { border-bottom: 1px solid #eef2f0; }
   .ant-table-tbody > tr:hover > td { background: #f6faf9; }
