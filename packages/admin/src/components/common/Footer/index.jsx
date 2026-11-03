@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom"
 import { PATH_LIST } from "../../../constant/path-list"
+import Logo from "../Logo"
 import CopyrightFooter from "../CopyRightFooter"
 import "./style.scss"
 
@@ -24,7 +25,7 @@ const Footer = () => (
     <div className="container">
         <div className="footer_grid">
             <div className="footer_brand">
-                <Link to={PATH_LIST.home} className="footer_logo">care<span>bridge</span></Link>
+                <Link to={PATH_LIST.home} className="footer_logo"><Logo tone="light" size={34} /></Link>
                 <p>Connecting communities with Community Health Workers, from first request to follow-up.</p>
             </div>
             {columns.map(col => (

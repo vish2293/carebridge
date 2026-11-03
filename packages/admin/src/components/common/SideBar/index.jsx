@@ -5,6 +5,7 @@ import { PATH_LIST } from "../../../constant/path-list";
 import { Menu, Tooltip } from "antd";
 import { questionIcon } from "../../../assets/icons";
 import { setActiveSidebar } from "../../../redux/slices/headerSlice";
+import Logo from "../Logo";
 import SideBarDrawer from "../SidebarDrawer";
 import { useEffect, useState } from "react";
 
@@ -79,14 +80,7 @@ const SideBar = () => {
             onClick={() => navigate(PATH_LIST.user.dashboard)}
             style={{ cursor: 'pointer', padding: '20px 15px' }}
           >
-            <span style={{ 
-              fontSize: '1.4rem', 
-              fontWeight: '700', 
-              color: '#0F766E',
-              letterSpacing: '-0.5px'
-            }}>
-              care<span style={{ color: '#fff' }}>bridge</span>
-            </span>
+            <Logo tone="light" size={30} />
           </div>
           <Menu
             mode="inline"

@@ -1,6 +1,7 @@
 import React from 'react'
 import { PATH_LIST } from '../../../constant/path-list'
 import { Button } from 'antd'
+import Logo from '../Logo'
 import { Link } from 'react-router-dom'
 
 const LogInHeader = ({ isContact }) => {
@@ -12,14 +13,7 @@ const LogInHeader = ({ isContact }) => {
   return (
     <div className='login_header'>
       <div className='login_header_left'>
-        <Link to={PATH_LIST.home} aria-label='CareBridge home' style={{ 
-          fontSize: '1.5rem', 
-          fontWeight: '700', 
-          color: '#0F766E',
-          letterSpacing: '-0.5px'
-        }}>
-          care<span style={{ color: '#1E293B' }}>bridge</span>
-        </Link>
+        <Link to={PATH_LIST.home} aria-label='CareBridge home'><Logo size={32} /></Link>
       </div>
       {isContact && (
         <div className='login_header_right'>

@@ -1,6 +1,7 @@
 import React from 'react'
 import "./style.scss"
 import { PATH_LIST } from '../../../constant/path-list'
+import Logo from "../Logo"
 import { Link } from 'react-router-dom'
 
 const Header = ({ navigate }) => {
@@ -8,7 +9,7 @@ const Header = ({ navigate }) => {
         <header className='site_header'>
             <div className='container'>
                 <div className='header_inner'>
-                    <Link to={PATH_LIST.home} className='site_logo'>care<span>bridge</span></Link>
+                    <Link to={PATH_LIST.home} className='site_logo'><Logo size={32} /></Link>
                     <nav className='site_nav' aria-label='Main'>
                         <a href='/#how'>How it works</a>
                         <Link to={PATH_LIST.contactus}>Contact</Link>

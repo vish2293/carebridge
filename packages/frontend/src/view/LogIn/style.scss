@@ -518,7 +518,7 @@
   &::before { display: none; }
   .brand_mark {
     position: absolute; top: 40px; left: 8%;
-    font: 700 1.7rem "Bricolage Grotesque", sans-serif; color: #F2B632; letter-spacing: -0.02em;
+    display: inline-flex;
     span { color: #fff; }
   }
   .bg-content {

@@ -1,12 +1,13 @@
 
 import React from 'react'
+import Logo from './../Logo'
 import { Link } from 'react-router-dom'
 
 const LogInSignupLeft = ({ title1, title2, description, data, icon }) => {
   return (
     <div className='login-left'>
       <div className='bg-img'>
-        <Link to='/' className='brand_mark'>care<span>bridge</span></Link>
+        <Link to='/' className='brand_mark'><Logo tone='light' size={36} /></Link>
         <div className='bg-content'>
           {icon && <div className='quote'>{icon}</div>}
           <h1>{title1}{title2}</h1>

@@ -1,0 +1,104 @@
+// Design layer loaded after every other stylesheet. One palette (spruce + teal, amber only in the logo),
+// one radius scale (10px controls, 14px surfaces), Bricolage for headings, Figtree for UI text.
+:root {
+  --heading_font: "Bricolage Grotesque", sans-serif;
+  --body_font: "Figtree", sans-serif;
+  --body-bg: #f4f6f5;
+  --surface: #ffffff;
+  --line: #e3e8e6;
+  --ink: #12211f;
+  --ink-soft: #5b6b68;
+  --spruce: #0f3d3a;
+  --teal: #0f766e;
+  --r-control: 10px;
+  --r-surface: 14px;
+  --shadow-surface: 0 1px 2px rgba(15, 61, 58, 0.05), 0 8px 24px -12px rgba(15, 61, 58, 0.12);
+}
+
+body {
+  font-family: var(--body_font);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink);
+  background: var(--body-bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, .table-heading, .view-header h2 {
+  font-family: var(--heading_font);
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+a:hover { color: var(--teal); }
+::selection { background: rgba(15, 118, 110, 0.18); }
+
+// ---- sidebar
+.app_wrapper .side-bar {
+  background: var(--spruce);
+  scrollbar-color: rgba(255, 255, 255, 0.25) var(--spruce);
+  .ant-menu, .ant-menu-dark { background: transparent; }
+  .ant-menu-item, .ant-menu-submenu-title {
+    border-radius: var(--r-control);
+    margin: 2px 10px;
+    width: calc(100% - 20px);
+    color: #b9d3cf;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .ant-menu-item:hover, .ant-menu-submenu-title:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
+  .ant-menu-item-selected {
+    background: rgba(255, 255, 255, 0.12) !important;
+    color: #fff !important;
+    box-shadow: inset 3px 0 0 #f2b632;
+  }
+  .ant-menu-sub { background: transparent !important; }
+}
+
+// ---- page chrome
+.dashboard-main .dasboard-sec { padding-top: 72px; }
+.view-header h2 { font-weight: 700; }
+
+// ---- surfaces
+.ant-card, .dashboard_table_wrapper .ant-table-wrapper, .ant-modal-content, .ant-drawer-content {
+  border-radius: var(--r-surface);
+}
+.ant-card { border-color: var(--line); box-shadow: var(--shadow-surface); }
+.dashboard_table_wrapper .ant-table-wrapper { border-color: var(--line); box-shadow: var(--shadow-surface); overflow: hidden; }
+
+// ---- tables
+.ant-table-wrapper {
+  .ant-table-thead > tr > th {
+    background: #eef3f1;
+    color: var(--ink-soft);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--line);
+  }
+  .ant-table-tbody > tr > td { border-bottom: 1px solid #eef2f0; }
+  .ant-table-tbody > tr:hover > td { background: #f6faf9; }
+  .ant-pagination-item-active { border-color: var(--teal); a { color: var(--teal); } }
+}
+
+// ---- buttons and inputs (antd + .btn share one shape)
+.btn, .ant-btn { border-radius: var(--r-control); font-family: var(--body_font); }
+.btn { font-size: 15px; font-weight: 600; padding: 10px 20px; }
+.ant-btn { font-weight: 600; transition: transform 0.15s, background 0.2s, border-color 0.2s; }
+.ant-btn:not(:disabled):active, .btn:active { transform: translateY(1px) scale(0.98); }
+.ant-input, .ant-input-affix-wrapper, .ant-select-selector, .ant-picker, .ant-input-number {
+  border-radius: var(--r-control) !important;
+}
+.ant-input:focus, .ant-input-affix-wrapper-focused, .ant-select-focused .ant-select-selector, .ant-picker-focused {
+  border-color: var(--teal) !important;
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15) !important;
+}
+.ant-form-item-label > label { font-weight: 600; color: var(--ink); }
+.ant-tag { border-radius: 999px; padding: 1px 10px; font-weight: 500; }
+
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+}
