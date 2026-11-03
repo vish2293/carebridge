@@ -26,6 +26,7 @@ app.use(['/user/login', '/user/otp', '/user/resend-otp', '/user/forget-pwd', '/u
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw())
+app.get('/health', (req, res) => res.json({ ok: true }))
 app.use('/', mainRouter)
 
 
