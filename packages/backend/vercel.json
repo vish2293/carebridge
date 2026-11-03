@@ -1,5 +1,7 @@
 {
   "installCommand": "cd ../.. && npm install",
+  "framework": null,
+  "buildCommand": "",
   "rewrites": [
     {
       "source": "/(.*)",
