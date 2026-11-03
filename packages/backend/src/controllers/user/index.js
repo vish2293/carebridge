@@ -3206,6 +3206,25 @@ const resendOTP = async (req, res) => {
   }
 }
 
+// One-click demo sign-in for client presentations. Off unless DEMO_MODE=true; skips the OTP step.
+// Accounts are the seeded base+N addresses: base = Super_Admin, +1 Program_Administrator, +2 CHW, +3 Client.
+const demoLogin = async (req, res) => {
+  if (process.env.DEMO_MODE !== "true" || !process.env.DEMO_EMAIL_BASE) {
+    return res.status(404).json({ message: "Not found" });
+  }
+  const suffix = { Super_Admin: "", Program_Administrator: "+1", CHW: "+2", Client: "+3" }[req.body?.role];
+  if (suffix === undefined) {
+    return res.status(400).json({ message: "Invalid demo role" });
+  }
+  const email = process.env.DEMO_EMAIL_BASE.toLowerCase().replace("@", `${suffix}@`);
+  const demoUser = await userModel.findOne({ email, role: req.body.role });
+  if (!demoUser) {
+    return res.status(404).json({ message: "Demo account not found. Run the seed first." });
+  }
+  const token = jwt.sign({ userId: demoUser._id, role: demoUser.role }, process.env.JWT_SECRETE_KEY, { expiresIn: "8h" });
+  res.status(200).json({ status: true, message: "Demo login", token });
+};
+
 module.exports = {
   createUser,
   listLanaguage,
@@ -3249,5 +3268,6 @@ module.exports = {
   mergeData,
   setReassessmentDateScript,
   verifyOTP,
-  resendOTP
+  resendOTP,
+  demoLogin
 };

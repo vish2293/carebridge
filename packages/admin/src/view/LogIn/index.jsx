@@ -6,6 +6,7 @@ import { loginUser } from "../../redux/actions/user";
 import { PATH_LIST } from "../../constant/path-list";
 import "./style.scss";
 import LoginForm from "./LoginForm";
+import DemoAccess from "../../components/common/DemoAccess";
 import LogInHeader from "../../components/common/LogInHeader";
 import LogInSignupLeft from "../../components/common/LogInSignupLeft";
 
@@ -64,6 +65,7 @@ const LogIn = () => {
                 disableLogin={disableLogin}
                 setDisableLogin={setDisableLogin}
               />
+              <DemoAccess />
             </div>
             <div className="login-roght-bottom">
               <span>

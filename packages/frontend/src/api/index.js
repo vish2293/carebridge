@@ -9,6 +9,7 @@ export const API_URL = {
     createCLientRequest: `${BASE_URL}/user/createClient`,
     login: `${BASE_URL}/user/login`,
     otp: `${BASE_URL}/user/otp`,
+    demoLogin: `${BASE_URL}/user/demo-login`,
     resendOTP: `${BASE_URL}/user/resend-otp`,
     resetPassword: `${BASE_URL}/user/forget-pwd`,
     changePassword: `${BASE_URL}/user/reset-pwd`,

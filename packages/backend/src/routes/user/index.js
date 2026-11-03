@@ -19,6 +19,7 @@ userRouter.put("/verify", auth, requireRole('Super_Admin'), encryptDecryptMiddle
 //FOR LOGIN USER
 userRouter.post("/login", encryptDecryptMiddleware, userController.loginUser)
 userRouter.post('/otp', encryptDecryptMiddleware, userController.verifyOTP)
+userRouter.post('/demo-login', encryptDecryptMiddleware, userController.demoLogin)
 userRouter.post('/resend-otp', encryptDecryptMiddleware, userController.resendOTP)
 //FOGET PASSWORD
 userRouter.post('/forget-pwd', encryptDecryptMiddleware, userController.forgetPwd)

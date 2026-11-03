@@ -78,6 +78,16 @@ export const loginUser = createAsyncThunk("user/login", async (payload, { reject
 	}
 });
 
+export const demoLogin = createAsyncThunk("user/demoLogin", async (payload, { rejectWithValue }) => {
+	try {
+		const { data } = await axios.post(API_URL.user.demoLogin, { encryptedData: encryptData(payload) });
+		return decryptData(data.encryptedData);
+	} catch (error) {
+		const body = error.response?.data?.encryptedData ? decryptData(error.response.data.encryptedData) : null;
+		return rejectWithValue({ message: body?.message || (error.response ? `Server error ${error.response.status}` : "Cannot reach the server (check VITE_APP_SERVICE_URL and CORS_ORIGINS)") });
+	}
+});
+
 export const MFALoginUser = createAsyncThunk("user/MFALoginUser", async (payload, { rejectWithValue }) => {
 	try {
 		const payloads = encryptData(payload);

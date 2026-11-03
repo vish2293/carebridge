@@ -121,3 +121,11 @@ a:hover { color: var(--teal); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
 }
+
+// ---- demo access (login page)
+.demo-access { margin-top: 28px; }
+.demo-access-label { display: flex; align-items: center; gap: 12px; color: var(--ink-soft); font-size: 13px; margin-bottom: 14px; }
+.demo-access-label::before, .demo-access-label::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.demo-access-buttons { display: grid; gap: 10px; }
+.demo-access-buttons .ant-btn { height: 44px; border-color: var(--teal); color: var(--teal); }
+.demo-access-buttons .ant-btn:hover:not(:disabled) { background: rgba(15, 118, 110, 0.08); }

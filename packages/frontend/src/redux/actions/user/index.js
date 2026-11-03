@@ -59,6 +59,15 @@ export const loginUser = createAsyncThunk("user/login", async (payload, { reject
 	}
 });
 
+export const demoLogin = createAsyncThunk("user/demoLogin", async (payload, { rejectWithValue }) => {
+	try {
+		const { data } = await apiClient.post(API_URL.user.demoLogin, payload);
+		return data;
+	} catch (error) {
+		return rejectWithValue({ message: error?.response?.data?.message || "Cannot reach the server (check VITE_APP_SERVICE_URL and CORS_ORIGINS)" });
+	}
+});
+
 export const MFALoginUser = createAsyncThunk("user/MFALoginUser", async (payload, { rejectWithValue }) => {
 	try {
 		const { data } = await apiClient.post(API_URL.user.otp, payload);
