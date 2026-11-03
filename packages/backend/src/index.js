@@ -12,7 +12,7 @@ const requestIp = require('request-ip');
 // const { requestController } = require('./controllers')
 
 const app = express()
-connectDb()
+connectDb().catch(() => { }) // logged in connectDb; each request below retries
 app.set('trust proxy', 1) // behind Vercel's proxy, so rate limits see the real client IP
 app.use(helmet())
 // CORS_ORIGINS: comma separated list of allowed frontend/admin URLs (empty = allow all, local dev only)
@@ -27,6 +27,15 @@ app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(requestIp.mw())
 app.get('/health', (req, res) => res.json({ ok: true }))
+// wait for (or retry) the database so a failed first connect can't wedge a warm serverless instance
+app.use(async (req, res, next) => {
+    try {
+        await connectDb()
+        next()
+    } catch (error) {
+        res.status(503).json({ message: 'Database unavailable, please retry' })
+    }
+})
 app.use('/', mainRouter)
 
 
